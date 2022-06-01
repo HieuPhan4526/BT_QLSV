@@ -135,19 +135,20 @@ function hienThiChiTiet(id) {
     console.log(dsSV.mangSV[viTri]);
     //Lấy thông tin lại
     getELE("tknv").value = dsSV.mangSV[viTri].taiKhoan;
-    getELE("tknv").disabled = "true";
+    getELE("tknv").disabled = true;
 
     getELE("name").value = dsSV.mangSV[viTri].hoTen;
     getELE("email").value = dsSV.mangSV[viTri].email;
     getELE("password").value = dsSV.mangSV[viTri].pass;
-    getELE("password").type = "text";
+    getELE("password").type = Text;
 
     getELE("datepicker").value = dsSV.mangSV[viTri].ngayLam;
     getELE("luongCB").value = dsSV.mangSV[viTri].luongCB;
     getELE("chucvu").value = dsSV.mangSV[viTri].chucVu;
     getELE("gioLam").value = dsSV.mangSV[viTri].gioLamTrongThang;
 
-    document.getElementById("").style.display = "block";
+    getELE("btnCapNhat").disabled = false;
+
 }
 // Cập Nhập lại sinh viên
 

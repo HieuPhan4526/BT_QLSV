@@ -23,6 +23,7 @@ function SinhVien(ID, ten, email, pass, ngayLam, luongCB, chucVu, gioLamTrongTha
                 break;
             default: alert("Hãy chọn chức vụ");
                 break;
+
         }
     };
     this.xepLoai = function () {
