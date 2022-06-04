@@ -34,12 +34,15 @@ function DanhSachSinhVien() {
 
         }
     };
-
-
-
-
-
-
-
-
 }
+DanhSachSinhVien.prototype.timKiemSinhVien = function (xepLoaiTK) {
+    var mangTK = [];
+    var loaiNhanVienTK = xepLoaiTK.toLowerCase();
+    this.mangSV.map(function (sv) {
+        var loaiNhanVienTKthuong = sv.xepLoai.toLowerCase();
+        if (loaiNhanVienTKthuong.indexOf(loaiNhanVienTK) > -1) {
+            mangTK.push(sv);
+        }
+    });
+    return mangTK;
+};

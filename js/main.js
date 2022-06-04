@@ -32,7 +32,6 @@ function getLocalStorage() {
     hienThiTable(dsSV.mangSV);
 }
 
-
 getLocalStorage();
 
 
@@ -85,7 +84,6 @@ function themSinhVien() {
         // lấy dữ liệu localStorage
 
         getLocalStorage();
-
     }
 }
 
@@ -94,7 +92,7 @@ function hienThiTable(mang) {
     var content = "";
     //Duyệt mảng sv = hàm map.
     // map(funtion(1 Phần tử của Mảng, vị trí của phần tử){})
-    mang.map(function (sv, index) {
+    mang.map(function (sv) {
         var trELE = `<tr>
             <td>${sv.taiKhoan}</td>
             <td>${sv.hoTen}</td>
@@ -105,7 +103,7 @@ function hienThiTable(mang) {
             <td>${sv.xepLoai}</td>
             <td>
                 <button class= "btn btn-danger" onclick = "xoaSinhVien('${sv.taiKhoan}')" >Xóa</button>
-                <button class= "btn btn-info" onclick = "hienThiChiTiet('${sv.taiKhoan}')" >Xem</button>
+                <button data-toggle="modal" data-target="#myModal" class= "btn btn-info" onclick = "hienThiChiTiet('${sv.taiKhoan}')" >Xem</button>
 
             </td>
         </tr>`;
@@ -125,8 +123,6 @@ function xoaSinhVien(id) {
     // lấy dữ liệu localStorage
 
     getLocalStorage();
-    // hienThiTable();
-
 }
 // Hiển thị lại sinh viên khi người dùng click button  xem.
 function hienThiChiTiet(id) {
@@ -148,10 +144,10 @@ function hienThiChiTiet(id) {
     getELE("gioLam").value = dsSV.mangSV[viTri].gioLamTrongThang;
 
     getELE("btnCapNhat").disabled = false;
+    getELE("btnThemNV").disabled = true;
 
 }
 // Cập Nhập lại sinh viên
-
 function capNhapSinhVien() {
     //Lấy thông tin
     var taiKhoan = getELE("tknv").value;
@@ -170,7 +166,7 @@ function capNhapSinhVien() {
     //? Kiểm Tra Tên
     isValid &= valid.kiemTraRong(ten, "tbTen", "Tên Nhân viên Không được dể trống") && valid.kiemTraTen(ten, "tbTen", "Tên Nhân Viên Phải là Chữ.");
     //? Kiểm Tra Email
-    isValid &= valid.kiemTraRong(email, "tbEmail", "Email Không Được Để Trống") && valid.kiemTraEmail(email, "tbEmail", "Email Phải Đúng Định Dạng") && valid.kiemTraTrung(email, "tbEmail", "Email Đã có", dsSV.mangSV);
+    isValid &= valid.kiemTraRong(email, "tbEmail", "Email Không Được Để Trống") && valid.kiemTraEmail(email, "tbEmail", "Email Phải Đúng Định Dạng");
     //? Kiểm Tra PassWord
     isValid &= valid.kiemTraRong(pass, "tbMatKhau", "PassWord Không Được Để Trống") && valid.kiemTraPassWord(pass, "tbMatKhau", "PassWord từ 6-10 ký tự ,chứa ít nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt");
     //? kiểm Tra Ngày làm
@@ -196,3 +192,13 @@ function capNhapSinhVien() {
         getLocalStorage();
     }
 }
+
+getELE("btnTimNV").onclick = function () {
+    var loaiNhanVienTK = getELE("searchName").value;
+    var mangTK = [];
+
+    mangTK = dsSV.timKiemSinhVien(loaiNhanVienTK);
+
+    hienThiTable(mangTK);
+
+};

@@ -10,26 +10,25 @@ function SinhVien(ID, ten, email, pass, ngayLam, luongCB, chucVu, gioLamTrongTha
     this.gioLamTrongThang = gioLamTrongThang;
     this.tongLuong = 0;
     this.xepLoai = "";
-
-
     //Method
     this.tinhTongLuong = function () {
         switch (this.chucVu) {
-            case "Sếp": this.tongLuong = this.luongCB * 3 * this.gioLamTrongThang;
+            case "Sếp":
+                this.tongLuong = this.luongCB * 3;
                 break;
-            case "Trưởng phòng": this.tongLuong = this.luongCB * 2 * this.gioLamTrongThang;
+            case "Trưởng phòng":
+                this.tongLuong = this.luongCB * 2;
                 break;
-            case "Nhân viên": this.tongLuong = this.luongCB * this.gioLamTrongThang;
+            case "Nhân viên":
+                this.tongLuong = this.luongCB;
                 break;
             default: alert("Hãy chọn chức vụ");
                 break;
-
         }
     };
     this.xepLoai = function () {
         if (this.gioLamTrongThang >= 192) {
             this.xepLoai = "Nhân Viên Xuất sắc";
-
         } else if (this.gioLamTrongThang >= 176) {
             this.xepLoai = "Nhân Viên Giỏi";
         } else if (this.gioLamTrongThang >= 160) {
