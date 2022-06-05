@@ -85,7 +85,6 @@ function themSinhVien() {
 
         getLocalStorage();
     }
-    resetNV();
 
 }
 
