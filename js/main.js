@@ -85,6 +85,8 @@ function themSinhVien() {
 
         getLocalStorage();
     }
+    resetNV();
+
 }
 
 function hienThiTable(mang) {
@@ -191,6 +193,9 @@ function capNhapSinhVien() {
 
         getLocalStorage();
     }
+    resetNV();
+    getELE("btnThemNV").disabled = false;
+    getELE("btnCapNhat").disabled = true;
 }
 
 getELE("btnTimNV").onclick = function () {
@@ -202,3 +207,20 @@ getELE("btnTimNV").onclick = function () {
     hienThiTable(mangTK);
 
 };
+//Event onkeyup
+getELE("searchName").onkeyup = function () {
+    var loaiNhanVienTK = getELE("searchName").value;
+    var mangTK = [];
+
+    mangTK = dsSV.timKiemSinhVien(loaiNhanVienTK);
+
+    hienThiTable(mangTK);
+};
+// function Reset
+function resetNV() {
+    getELE("formNV").reset();
+    getELE("tknv").disabled = false;
+
+}
+
+
